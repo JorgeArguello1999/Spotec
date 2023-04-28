@@ -24,7 +24,7 @@ async def tabla_juego(request: Request):
     except:
         print("Todas las tablas")
     
-    return templates.TemplateResponse('vista_jugador.html', {
+    return templates.TemplateResponse('tabla_juego.html', {
         "request": request,
         "lista_categorias": lista_categorias,
         "data": data

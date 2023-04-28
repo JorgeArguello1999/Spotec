@@ -1,0 +1,44 @@
+{% extends "plantilla.html" %}
+{% block title %} Jugadores {% endblock %}
+{% block content %}
+
+<div class="container">
+<div class="row">
+
+<div class="tabla">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <caption>Jugadores</caption>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Fecha Nacimiento</th>
+          <th scope="col">Tiempo</th>
+          <th scope="col">Equipo</th>
+          <th scope="col">Provincia</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for key in data %}
+        <tr>
+          <th scope="row">{{ key.idjugador }}</th>
+          <td>{{ key.nombres }}</td>
+          <td>{{ key.edad }}</td>
+          <td>{{ key.fnacimiento}}</td>
+          <td>{{ key.tiempo}}</td>
+          <td>{{ key.nombre }}</td>
+          <td>{{ key.pnombre }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+</div>
+
+{% endblock %}

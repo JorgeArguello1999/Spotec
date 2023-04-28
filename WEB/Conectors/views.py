@@ -70,6 +70,23 @@ class vistas(database):
         cur = cur.fetchall()
         return cur
 
+    def listar_jugadores(self):
+        cur = self.conn.cursor()
+        cur.execute(f"""
+        select jugadores.idjugador, jugadores.nombres, jugadores.edad, jugadores.fnacimiento,
+        jugadores.tiempo, equipos.nombre, provincias.nombre 'pnombre'
+        from jugadores
+        inner join equipos
+        on jugadores.idequipo = equipos.idequipo
+        inner join provincias
+        on equipos.idprovincia = provincias.idprovincia;
+        """)
+        cur = cur.fetchall()
+        return cur
+
+
+    
+
 
 
 if __name__ == '__main__':

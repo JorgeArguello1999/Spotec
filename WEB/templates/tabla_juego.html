@@ -1,5 +1,5 @@
 {% extends "plantilla.html" %}
-{% block title %} Facturas {% endblock %}
+{% block title %} Tablas {% endblock %}
 {% block content %}
 
 <div class="buscar">
@@ -23,11 +23,10 @@
 
 <div class="tabla">
   <div class="col">
-    <h4>Evento: {{ key.idevento }} | {{ key.categoria }} | {{ key.nombre }}</h4>
-    <p>Serie: {{ key.serie }}</p>
-
     <table class="table">
       <thead>
+        <caption>Evento: {{ key.idevento }} | {{ key.categoria }} | {{ key.nombre }}</caption>
+
         <tr>
           <th scope="col">Carril</th>
           <th scope="col">Nombre</th>
@@ -39,7 +38,7 @@
 
       <tbody>
         <tr>
-          <th scope="row">fix</th>
+          <th scope="row">{{ key.idjugador }}</th>
           <td>{{ key.jnombres }}</td>
           <td>{{ key.edad }}</td>
           <td>{{ key.enombre }}</td>
