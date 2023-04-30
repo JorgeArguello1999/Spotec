@@ -3,13 +3,14 @@ import pymysql.cursors
 import os
 
 class connection:
-    
+
     def __init__(self):
+        password = os.getenv('DB_PASSWD')
         try:
             self.conn = pymysql.connect(
                 host = os.getenv('DB_URL'),
                 user = os.getenv('DB_USER'),
-                password = os.getenv('DB_PASSWD'),
+                password = f"{password}",
                 db = 'natacion',
                 charset='utf8mb4',
                 cursorclass = pymysql.cursors.DictCursor

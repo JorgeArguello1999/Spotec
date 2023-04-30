@@ -85,10 +85,6 @@ class vistas(database):
         return cur
 
 
-    
-
-
-
 if __name__ == '__main__':
     lin = vistas()
     lin.tabla_juego()
