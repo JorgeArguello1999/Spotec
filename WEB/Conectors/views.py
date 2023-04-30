@@ -90,6 +90,31 @@ class vistas(database):
         cur = cur.fetchall()
         return cur
 
+    def listar_jugadores_fill(self, provincia= None, cedula=None):
+        cur = self.conn.cursor()
+        cur.execute("""
+        select jugadores.idjugador, jugadores.nombres, jugadores.edad, jugadores.fnacimiento,
+        jugadores.tiempo, equipos.nombre, provincias.nombre 'pnombre', jugadores.cedula
+        from jugadores
+        inner join equipos
+        on jugadores.idequipo = equipos.idequipo
+        inner join provincias
+        on equipos.idprovincia = provincias.idprovincia
+        where provincias.idprovincia = %s or jugadores.cedula = %s
+        """, (provincia, cedula))
+        cur = cur.fetchall()
+        return cur
+
+    # Provincias
+    def lista_provincias(self):
+        cur = self.conn.cursor()
+        cur.execute(f"""
+        select *
+        from provincias
+        """)
+        cur = cur.fetchall()
+        return cur
+
 
 if __name__ == '__main__':
     lin = vistas()

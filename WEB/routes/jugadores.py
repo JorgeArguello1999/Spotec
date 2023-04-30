@@ -12,21 +12,19 @@ vista = vistas()
 # Configuramos el Conector
 templates = Jinja2Templates(directory="templates")
 
-@router.route('/jugadores', methods=['GET', 'POST'])
-async def tabla_juego(request: Request):
-    lista_jugadores = vista.listar_jugadores()
-    data = vista.tabla_juego()
-
-    '''
-    form = await request.form()
-    try:
-        lista_categorias= vista.lista_categorias_fill(form['select'])
-        print("Usando el buscador")
-    except:
-        print("Todas las tablas")
-    '''
+@router.get('/jugadores')
+async def tabla_juego(request: Request, provincia: str = None, cedula: str = None):
     
+    provincias = vista.lista_provincias()
+    out = vista.listar_jugadores()
+
+    if provincia != None or cedula != None:
+        out = vista.listar_jugadores_fill(provincia, cedula)
+
+
+
     return templates.TemplateResponse('jugadores.html', {
         "request": request,
-        "data": lista_jugadores,
+        "data": out,
+        "provincias": provincias
     })
