@@ -2,19 +2,21 @@
 {% block title %} Tablas {% endblock %}
 {% block content %}
 
-<div class="buscar">
-  <form action="/tabla_juego" method="POST">
+<link href="{{ url_for('static', path='global.css') }}" rel="stylesheet">
 
-    <select class="form-select" name="select">
-      {% for valor in lista_categorias %}
+<div class="buscar">
+  <h3>Filtrar por Evento:</h3>
+  <form action="/tabla_juego" method="GET">
+    <select class="" name="idevento">
+      {% for valor in lista %}
       <option value="{{ valor.idevento }}">Evento: {{ valor.idevento }} Categoria: {{ valor.categoria }} {{ valor.nombre }}</option>
       {% endfor %}
     </select>
 
-    <input type="submit" class="btn btn-primary" value="Buscar">
-    <input type="submit" class="btn btn-primary" name="all" value="all">
-
+    <input type="submit" class="btn btn-primary" value="Buscar 🔍">
+    <a class="btn btn-primary" href="/tabla_juego">Todas las tablas🏠</a>
   </form>
+
 </div>
 
 <div class="container">
@@ -32,6 +34,7 @@
           <th scope="col">Nombre</th>
           <th scope="col">Edad</th>
           <th scope="col">Equipo</th>
+          <th scope="col">Provincia</th>
           <th scope="col">Tiempo</th>
         </tr>
       </thead>
@@ -42,6 +45,7 @@
           <td>{{ key.jnombres }}</td>
           <td>{{ key.edad }}</td>
           <td>{{ key.enombre }}</td>
+          <td>{{ key.provincia }}</td>
           <td>{{ key.tiempo}}</td>
         </tr>
       </tbody>

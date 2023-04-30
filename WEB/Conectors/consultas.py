@@ -19,4 +19,3 @@ class formularios(database):
 
 if __name__ == '__main__':
     lin = formularios()
-    

@@ -5,6 +5,7 @@ except:
 
 class vistas(database):
 
+    # Tablas de juego y categorias
     def lista_categorias(self):
         cur = self.conn.cursor()
         cur.execute("""
@@ -34,7 +35,7 @@ class vistas(database):
         cur.execute("""
         select informacion.idevento, informacion.categoria, estilos.nombre,
         juegos.serie, jugadores.nombres 'jnombres', jugadores.edad, equipos.nombre 'enombre', 
-        jugadores.tiempo
+        jugadores.tiempo, provincias.nombre 'provincia'
 
         from informacion
         inner join estilos
@@ -45,16 +46,18 @@ class vistas(database):
         on juegos.idjugador = jugadores.idjugador
         inner join equipos
         on jugadores.idequipo = equipos.idequipo 
+        inner join provincias
+        on equipos.idprovincia = provincias.idprovincia
         """)
         cur = cur.fetchall()
         return cur
 
-    def tabla_juego_categoria(self, categoria):
+    def tabla_juego_categoria(self, idevento):
         cur = self.conn.cursor()
         cur.execute(f"""
         select informacion.idevento, informacion.categoria, estilos.nombre,
         juegos.serie, jugadores.nombres 'jnombres', jugadores.edad, equipos.nombre 'enombre', 
-        jugadores.tiempo
+        jugadores.tiempo, provincias.nombre 'provincia'
 
         from informacion
         inner join estilos
@@ -65,16 +68,19 @@ class vistas(database):
         on juegos.idjugador = jugadores.idjugador
         inner join equipos
         on jugadores.idequipo = equipos.idequipo 
-        where categoria = {categoria}
+        inner join provincias
+        on equipos.idprovincia = provincias.idprovincia
+        where informacion.idevento = {idevento}
         """)
         cur = cur.fetchall()
         return cur
 
+    # Jugadores
     def listar_jugadores(self):
         cur = self.conn.cursor()
         cur.execute(f"""
         select jugadores.idjugador, jugadores.nombres, jugadores.edad, jugadores.fnacimiento,
-        jugadores.tiempo, equipos.nombre, provincias.nombre 'pnombre'
+        jugadores.tiempo, equipos.nombre, provincias.nombre 'pnombre', jugadores.cedula
         from jugadores
         inner join equipos
         on jugadores.idequipo = equipos.idequipo
