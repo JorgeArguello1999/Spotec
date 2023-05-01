@@ -14,14 +14,13 @@ templates = Jinja2Templates(directory="templates")
 
 # @router.route('/tabla_juego', methods=['GET', 'POST'])
 @router.get('/equipos')
-async def tabla_juego(request: Request, equipo: str = None, provincia: str None):
+async def tabla_juego(request: Request, equipo: str = None, provincia: str = None):
 
-    lista = vista.tabla_juego()
+    provincias = vista.lista_provincias()
+    equipos = vista.lista_equipos()
 
-
-    return templates.TemplateResponse('tabla_juego.html', {
+    return templates.TemplateResponse('equipos.html', {
         "request": request,
-        "lista_categorias": out,
-        "data": data,
-        "lista": lista
+        "equipos": equipos,
+        "provincias": provincias
     })

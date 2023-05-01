@@ -115,6 +115,19 @@ class vistas(database):
         cur = cur.fetchall()
         return cur
 
+    # Equipos
+    def lista_equipos(self):
+        cur = self.conn.cursor()
+        cur.execute(f"""
+        SELECT DISTINCT equipos.nombre FROM equipos
+        inner join jugadores
+        on jugadores.idequipo = equipos.idequipo
+        inner join entrenadores
+        on entrenadores.identrenador = equipos.identrenador
+        order by equipos.nombre
+        """)
+        cur = cur.fetchall()
+        return cur
 
 if __name__ == '__main__':
     lin = vistas()

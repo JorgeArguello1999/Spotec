@@ -9,6 +9,7 @@ import os
 # Configuramos las routas de los diferentes modulos
 from routes.tabla_juego import router as tabla_juego
 from routes.jugadores import router as jugadores
+from routes.equipos import router as equipos 
 
 # Configuramos FastAPi
 app = FastAPI()
@@ -18,6 +19,7 @@ templates = Jinja2Templates(directory="templates")
 # Rutas en modulos externos
 app.include_router(tabla_juego)
 app.include_router(jugadores)
+app.include_router(equipos)
 
 
 if __name__ == '__main__':

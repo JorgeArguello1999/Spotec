@@ -6,20 +6,18 @@
 
 <div class="buscar">
 
-  <h3>Filtrar por cédula o provincia</h3>
+  <h3>Filtrar por provincia</h3>
 
 
-  <form action="/jugadores" method="GET">
+  <form action="/equipos" method="GET">
     <select class="" name="provincia">
       {% for valor in provincias %}
       <option value="{{ valor.idprovincia }}">Provincia: {{ valor.nombre }}</option>
       {% endfor %}
     </select>
 
-    <input type="text" name="cedula" placeholder="Cédula">
-
     <input type="submit" class="btn btn-primary" value="Buscar 🔍">
-    <a class="btn btn-primary" href="/jugadores">Todos los jugadores 🏠</a>
+    <a class="btn btn-primary" href="/equipos">Todos los equipos🏠</a>
   </form>
 
 <div class="container">
@@ -43,7 +41,7 @@
       </thead>
 
       <tbody>
-        {% for key in data %}
+        {% for key in equipos %}
         <tr>
           <th scope="row">{{ key.idjugador }}</th>
           <td>{{ key.nombres }}</td>
