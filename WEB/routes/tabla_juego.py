@@ -16,20 +16,17 @@ templates = Jinja2Templates(directory="templates")
 @router.get('/tabla_juego')
 async def tabla_juego(request: Request, idevento: int = None):
 
-    lista = vista.tabla_juego()
+    lista = vista.lista_categorias()
 
     if idevento == None:
-        out = vista.lista_categorias()
         data = vista.tabla_juego()
         print("Todas las tablas")
     else:
-        out = vista.lista_categorias_fill(idevento)
         data = vista.tabla_juego_categoria(idevento)
         print("Usando el buscador")
 
     return templates.TemplateResponse('tabla_juego.html', {
         "request": request,
-        "lista_categorias": out,
         "data": data,
         "lista": lista
     })
