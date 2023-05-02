@@ -3,6 +3,8 @@ try:
 except:
     from database import connection as database
 
+import itertools
+
 class vistas(database):
 
     # Tablas de juego y categorias
@@ -17,7 +19,6 @@ class vistas(database):
         cur.fetchall
         return cur
 
-
     def lista_categorias_fill(self, idevento):
         cur = self.conn.cursor()
         cur.execute(f"""
@@ -30,13 +31,24 @@ class vistas(database):
         cur.fetchall
         return cur
 
+    # Experimentando
+    def maquetador_tabla(self, data):
+        group_data = itertools.groupby(data, key=lambda x: x['idevento'])
+
+        result_dict = {}
+        for key, group in group_data:
+            result_dict[key] = list(group)
+
+        print("Dict: ", result_dict)
+
+        return result_dict
+
     def tabla_juego(self):
         cur = self.conn.cursor()
         cur.execute("""
         select informacion.idevento, informacion.categoria, estilos.nombre,
         juegos.serie, jugadores.nombres 'jnombres', jugadores.edad, equipos.nombre 'enombre', 
         jugadores.tiempo, provincias.nombre 'provincia'
-
         from informacion
         inner join estilos
         on informacion.idestilo = estilos.idestilo
@@ -50,7 +62,7 @@ class vistas(database):
         on equipos.idprovincia = provincias.idprovincia
         """)
         cur = cur.fetchall()
-        return cur
+        return self.maquetador_tabla(cur)
 
     def tabla_juego_categoria(self, idevento):
         cur = self.conn.cursor()
@@ -73,7 +85,7 @@ class vistas(database):
         where informacion.idevento = {idevento}
         """)
         cur = cur.fetchall()
-        return cur
+        return self.maquetador_tabla(cur)
 
     # Jugadores
     def listar_jugadores(self):
@@ -85,7 +97,8 @@ class vistas(database):
         inner join equipos
         on jugadores.idequipo = equipos.idequipo
         inner join provincias
-        on equipos.idprovincia = provincias.idprovincia;
+        on equipos.idprovincia = provincias.idprovincia
+        order by jugadores.nombres ASC;
         """)
         cur = cur.fetchall()
         return cur

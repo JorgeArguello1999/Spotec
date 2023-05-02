@@ -21,14 +21,17 @@
 
 <div class="container">
 <div class="row">
-{% for key in data %}
 
+{% for key, value in data.items() %}
 <div class="tabla">
   <div class="col">
     <table class="table">
-      <thead>
-        <caption>Evento: {{ key.idevento }} | {{ key.categoria }} | {{ key.nombre }}</caption>
 
+      <thead>
+
+        {% for item in value %}
+          <caption>Evento: {{ key }} | {{ item['categoria'] }} | {{ item['nombre'] }}</caption>
+        {% endfor %}
         <tr>
           <th scope="col">Carril</th>
           <th scope="col">Nombre 🏊</th>
@@ -40,19 +43,20 @@
       </thead>
 
       <tbody>
+        {% for item in value %}
         <tr>
-          <th scope="row">{{ key.idjugador }}</th>
-          <td>{{ key.jnombres }}</td>
-          <td>{{ key.edad }}</td>
-          <td>{{ key.enombre }}</td>
-          <td>{{ key.provincia }}</td>
-          <td>{{ key.tiempo}}</td>
+          <th scope="row">{{ item['idjugador'] }}</th>
+          <td>{{ item['jnombres'] }}</td>
+          <td>{{ item['edad'] }}</td>
+          <td>{{ item['enombre'] }}</td>
+          <td>{{ item['provincia'] }}</td>
+          <td>{{ item['tiempo'] }}</td>
         </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
 </div>
-
 {% endfor %}
 </div>
 </div>
