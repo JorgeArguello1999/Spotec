@@ -9,7 +9,7 @@ import os
 # Configuramos las routas de los diferentes modulos
 from routes.tabla_juego import router as tabla_juego
 from routes.jugadores import router as jugadores
-from routes.equipos import router as equipos 
+from routes.filtro import router as equipos 
 
 # Configuramos FastAPi
 app = FastAPI()

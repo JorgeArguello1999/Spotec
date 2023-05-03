@@ -1,0 +1,56 @@
+{% extends "plantilla.html" %}
+{% block title %} Jugadores {% endblock %}
+{% block content %}
+
+<link href="{{ url_for('static', path='global.css') }}" rel="stylesheet">
+
+<div class="buscar">
+
+  <h3>Disciplinas en las que participa</h3>
+
+
+  <form action="/filtro" method="GET">
+    <label>ID jugador</label>
+    <input type="number" class="" name="idjugador" value="0" placeholder="ID de Jugador: 1">
+    <label>Cédula jugador</label>
+    <input type="number" class="" name="cedula" value="0" placeholder="Cédula de Jugador: 1">
+    <input type="submit" class="btn btn-primary" value="Buscar 🔍">
+    <a class="btn btn-primary" href="/filtro">🏠</a>
+  </form>
+
+<div class="container">
+<div class="row">
+
+{% for key, value in equipos.items() %}
+<div class="tabla">
+  <div class="col">
+    <table class="table">
+      <thead>
+
+        {% for item in value %}
+        <caption>#️⃣  ID jugador: {{ item['idjugador'] }} | 🏊 Nombre: {{ item['nombres'] }} | 📅 Edad: {{ item['edad'] }} | 🪪 Cédula: {{ item['cedula'] }} | 👥 Equipo: {{ item['nombre'] }} | 📍 Provincia:  {{ item['provincia'] }}
+        </caption>
+        {% endfor %}
+
+        <tr>
+          <th scope="col">Categoría 📋</th>
+          <th scope="col">Tiempo ⏳</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for item in value %}
+        <tr>
+          <td>{{ item['categoria'] }}</td>
+          <td>{{ item['tiempo'] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endfor %}
+</div>
+</div>
+
+{% endblock %}

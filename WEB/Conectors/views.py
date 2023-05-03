@@ -40,8 +40,18 @@ class vistas(database):
             result_dict[key] = list(group)
 
         print("Dict: ", result_dict)
-
         return result_dict
+
+    def maquetador_filtro(self, data):
+        group_data = itertools.groupby(data, key=lambda x: x['idjugador'])
+
+        result_dict = {}
+        for key, group in group_data:
+            result_dict[key] = list(group)
+
+        print("Dict: ", result_dict)
+        return result_dict
+
 
     def tabla_juego(self):
         cur = self.conn.cursor()
@@ -129,18 +139,25 @@ class vistas(database):
         return cur
 
     # Equipos
-    def lista_equipos(self):
+    def lista_equipos(self, cedula, idjugador):
         cur = self.conn.cursor()
         cur.execute(f"""
-        SELECT DISTINCT equipos.nombre FROM equipos
+        select jugadores.idjugador, informacion.categoria,
+        jugadores.nombres, equipos.nombre, provincias.nombre 'provincia', jugadores.edad,
+        jugadores.cedula
+        from juegos
+        inner join informacion
+        on juegos.idevento = informacion.idevento
         inner join jugadores
-        on jugadores.idequipo = equipos.idequipo
-        inner join entrenadores
-        on entrenadores.identrenador = equipos.identrenador
-        order by equipos.nombre
+        on juegos.idjugador = jugadores.idjugador
+        inner join equipos
+        on equipos.idequipo = jugadores.idequipo
+        inner join provincias
+        on equipos.idprovincia = provincias.idprovincia
+        where jugadores.cedula = {cedula} or jugadores.idjugador = {idjugador};
         """)
         cur = cur.fetchall()
-        return cur
+        return self.maquetador_filtro(cur)
 
 if __name__ == '__main__':
     lin = vistas()
