@@ -7,9 +7,23 @@
 <div class="buscar">
   <h3>Filtrar por Evento</h3>
   <form action="/tabla_juego" method="GET">
+    <!-- 
     <select class="" name="idevento">
       {% for valor in lista %}
       <option value="{{ valor.idevento }}">Evento: {{ valor.idevento }} Categoria: {{ valor.categoria }} {{ valor.nombre }}</option>
+      {% endfor %}
+    </select>
+    -->
+
+    <select class="" name="idgenero">
+      {% for gen in genero %}
+      <option value="{{ gen.idgenero }}">{{ gen.genero }}</option>
+      {% endfor %}
+    </select>
+
+    <select class="" name="idestilo">
+      {% for est in estilos %}
+      <option value="{{ est.idestilo }}">{{ est.nombre }}</option>
       {% endfor %}
     </select>
 

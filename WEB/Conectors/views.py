@@ -19,6 +19,22 @@ class vistas(database):
         cur.fetchall
         return cur
 
+    def lista_genero(self):
+        cur = self.conn.cursor()
+        cur.execute("""
+        select * from genero
+        """)
+        cur.fetchall
+        return cur
+
+    def lista_estilos(self):
+        cur = self.conn.cursor()
+        cur.execute("""
+        select * from estilos
+        """)
+        cur.fetchall
+        return cur
+
     def lista_categorias_fill(self, idevento):
         cur = self.conn.cursor()
         cur.execute(f"""
@@ -94,6 +110,29 @@ class vistas(database):
         inner join provincias
         on equipos.idprovincia = provincias.idprovincia
         where informacion.idevento = {idevento}
+        """)
+        cur = cur.fetchall()
+        return self.maquetador_tabla(cur)
+
+    def tabla_juego_genero_estilo(self, idgenero=1, idestilo=2):
+        cur = self.conn.cursor()
+        cur.execute(f"""
+        select informacion.idevento, informacion.categoria, estilos.nombre,
+        juegos.serie, jugadores.nombres 'jnombres', jugadores.edad, equipos.nombre 'enombre', 
+        juegos.tiempo_juego 'tiempo', provincias.nombre 'provincia'
+
+        from informacion
+        inner join estilos
+        on informacion.idestilo = estilos.idestilo
+        inner join juegos
+        on informacion.idevento = juegos.idevento
+        inner join jugadores
+        on juegos.idjugador = jugadores.idjugador
+        inner join equipos
+        on jugadores.idequipo = equipos.idequipo 
+        inner join provincias
+        on equipos.idprovincia = provincias.idprovincia
+        where informacion.idgenero = {idgenero} and estilos.idestilo = {idestilo}
         """)
         cur = cur.fetchall()
         return self.maquetador_tabla(cur)
