@@ -58,6 +58,19 @@ class vistas(database):
         print("Dict: ", result_dict)
         return result_dict
 
+    def get_carriles(self, resultados):
+        # Ordenar los resultados de cada evento por tiempo
+        for evento in resultados:
+            resultados[evento].sort(key=lambda x: x['tiempo'].total_seconds())
+
+            # Asignar carriles
+            carril = 4
+            for evento in resultados:
+                for i, competidor in enumerate(resultados[evento]):
+                    competidor['carril'] = carril
+                    carril -= 1
+                    print(evento)
+
     def maquetador_filtro(self, data):
         group_data = itertools.groupby(data, key=lambda x: x['idjugador'])
 
