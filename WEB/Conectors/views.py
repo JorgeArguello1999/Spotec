@@ -87,7 +87,7 @@ class vistas(database):
         cur.execute("""
         select informacion.idevento, informacion.categoria, estilos.nombre,
         juegos.serie, jugadores.nombres 'jnombres', jugadores.edad, equipos.nombre 'enombre', 
-        juegos.tiempo_juego 'tiempo', provincias.nombre 'provincia'
+        juegos.tiempo_registro 'tiempo', provincias.nombre 'provincia'
 
         from informacion
         inner join estilos
@@ -109,7 +109,7 @@ class vistas(database):
         cur.execute(f"""
         select informacion.idevento, informacion.categoria, estilos.nombre,
         juegos.serie, jugadores.nombres 'jnombres', jugadores.edad, equipos.nombre 'enombre', 
-        juegos.tiempo_juego 'tiempo', provincias.nombre 'provincia'
+        juegos.tiempo_registro 'tiempo', provincias.nombre 'provincia'
 
         from informacion
         inner join estilos
@@ -132,7 +132,7 @@ class vistas(database):
         cur.execute(f"""
         select informacion.idevento, informacion.categoria, estilos.nombre,
         juegos.serie, jugadores.nombres 'jnombres', jugadores.edad, equipos.nombre 'enombre', 
-        juegos.tiempo_juego 'tiempo', provincias.nombre 'provincia'
+        juegos.tiempo_registro 'tiempo', provincias.nombre 'provincia'
 
         from informacion
         inner join estilos
