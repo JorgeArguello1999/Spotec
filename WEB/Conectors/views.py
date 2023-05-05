@@ -186,7 +186,7 @@ class vistas(database):
         cur = self.conn.cursor()
         cur.execute(f"""
         select *
-        from provincias
+        from equipos 
         """)
         cur = cur.fetchall()
         return cur
