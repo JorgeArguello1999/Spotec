@@ -29,6 +29,8 @@ async def tabla_juego(request: Request, idevento: int = None, idgenero: int = No
         data = vista.tabla_juego_categoria(idevento)
         print("Usando el buscador")
 
+    vista.get_carriles(data)
+
     return templates.TemplateResponse('tabla_juego.html', {
         "request": request,
         "data": data,
