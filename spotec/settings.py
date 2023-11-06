@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "create_event"
+    "create_event",
+    "insert_students"
 ]
 
 MIDDLEWARE = [
