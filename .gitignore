@@ -1,5 +1,6 @@
 # Carpeta virtual environment (por ejemplo, si usas venv o virtualenv)
-venv/
+.venv/
+.env
 
 # Archivos generados por Python
 *.pyc
