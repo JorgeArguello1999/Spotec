@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "create_event",
     "insert_students",
+    "competence",
 ]
 
 MIDDLEWARE = [
