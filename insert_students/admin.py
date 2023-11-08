@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import create_student
+from .models import *
 
 # Register your models here.
-admin.site.register(create_student)
+Modelos = [Estudiante, EspaldaHombre]
+admin.site.register(Modelos)

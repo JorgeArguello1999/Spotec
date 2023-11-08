@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class create_student(models.Model):
+class Estudiante(models.Model):
     id = models.AutoField(primary_key=True)
     cedula = models.CharField(max_length=10)
     nombre = models.CharField(max_length=255)
@@ -21,3 +21,83 @@ class create_student(models.Model):
 
     def __str__(self):
         return self.nombre
+
+class LibreHombre(models.Model):
+    id_estudiante = models.IntegerField()
+    nombre_estudiante = models.TextField(max_length=255)
+    provincia_estudiante = models.TextField(max_length=255)
+    tiempo_registro = models.FloatField()
+    tiempo_competencia = models.FloatField()
+
+    def __str__(self):
+        return self.nombre_estudiante
+
+class EspaldaHombre(models.Model):
+    id_estudiante = models.IntegerField()
+    nombre_estudiante = models.TextField(max_length=255)
+    provincia_estudiante = models.TextField(max_length=255)
+    tiempo_registro = models.FloatField()
+    tiempo_competencia = models.FloatField()
+
+    def __str__(self):
+        return self.nombre_estudiante
+
+class BrazaHombre(models.Model):
+    id_estudiante = models.IntegerField()
+    nombre_estudiante = models.TextField(max_length=255)
+    provincia_estudiante = models.TextField(max_length=255)
+    tiempo_registro = models.FloatField()
+    tiempo_competencia = models.FloatField()
+
+    def __str__(self):
+        return self.nombre_estudiante
+
+class LibreHombre(models.Model):
+    id_estudiante = models.IntegerField()
+    nombre_estudiante = models.TextField(max_length=255)
+    provincia_estudiante = models.TextField(max_length=255)
+    tiempo_registro = models.FloatField()
+    tiempo_competencia = models.FloatField()
+
+    def __str__(self):
+        return self.nombre_estudiante
+
+class MariposaMujer(models.Model):
+    id_estudiante = models.IntegerField()
+    nombre_estudiante = models.TextField(max_length=255)
+    provincia_estudiante = models.TextField(max_length=255)
+    tiempo_registro = models.FloatField()
+    tiempo_competencia = models.FloatField()
+
+    def __str__(self):
+        return self.nombre_estudiante
+
+class EspaldaMujer(models.Model):
+    id_estudiante = models.IntegerField()
+    nombre_estudiante = models.TextField(max_length=255)
+    provincia_estudiante = models.TextField(max_length=255)
+    tiempo_registro = models.FloatField()
+    tiempo_competencia = models.FloatField()
+
+    def __str__(self):
+        return self.nombre_estudiante
+
+class BrazaMujer(models.Model):
+    id_estudiante = models.IntegerField()
+    nombre_estudiante = models.TextField(max_length=255)
+    provincia_estudiante = models.TextField(max_length=255)
+    tiempo_registro = models.FloatField()
+    tiempo_competencia = models.FloatField()
+
+    def __str__(self):
+        return self.nombre_estudiante
+
+class LibreMujer(models.Model):
+    id_estudiante = models.IntegerField()
+    nombre_estudiante = models.TextField(max_length=255)
+    provincia_estudiante = models.TextField(max_length=255)
+    tiempo_registro = models.FloatField()
+    tiempo_competencia = models.FloatField()
+
+    def __str__(self):
+        return self.nombre_estudiante
