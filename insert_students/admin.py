@@ -2,5 +2,4 @@ from django.contrib import admin
 from .models import *
 
 # Register your models here.
-Modelos = [Estudiante, EspaldaHombre]
-admin.site.register(Modelos)
+admin.site.register(Estudiante)
