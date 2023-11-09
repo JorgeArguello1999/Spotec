@@ -45,6 +45,5 @@ Distancia = (
 )
 
 def insert_student_in_compentence(data):
-
     for dat in data:
          print(dat)

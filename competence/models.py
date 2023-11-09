@@ -10,9 +10,10 @@ class Competencia(models.Model):
     genero = models.CharField(max_length=1)
     categoria = models.CharField(max_length=3)
     prueba = models.CharField(max_length=3)
+    distancia = models.CharField(max_length=3)
 
-    tiempo_registro = models.FloatField()
-    tiempo_competencia = models.FloatField()
+    tiempo_registro = models.FloatField(blank=True, null=True)
+    tiempo_competencia = models.FloatField(blank=True, null=True)
 
     def __str__(self):
         return self.nombre
