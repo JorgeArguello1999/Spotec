@@ -1,6 +1,6 @@
 from django.db import models
 
-class ClaseBase(models.Model):
+class Competencia(models.Model):
     id = models.AutoField(primary_key=True)
     cedula = models.CharField(max_length=10)
     nombre = models.CharField(max_length=255)
@@ -9,20 +9,10 @@ class ClaseBase(models.Model):
 
     genero = models.CharField(max_length=1)
     categoria = models.CharField(max_length=3)
+    prueba = models.CharField(max_length=3)
 
     tiempo_registro = models.FloatField()
     tiempo_competencia = models.FloatField()
 
-    class Meta:
-        abstract = True
-
     def __str__(self):
         return self.nombre
-
-class Espalda(ClaseBase): pass
-class Mariposa(ClaseBase): pass
-class Combinado(ClaseBase): pass
-class Libre(ClaseBase): pass
-class Pecho(ClaseBase): pass
-class Relevos(ClaseBase): pass
-class Snorkel(ClaseBase): pass

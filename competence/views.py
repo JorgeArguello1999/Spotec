@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from . import functions
 
 # Create your views here.
 def list(request):
