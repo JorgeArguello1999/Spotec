@@ -4,11 +4,36 @@
 
 {% block content %}
 
-<h1>Competencia</h1>
-<ul>
-    {% for list in lista %}
-    <li>{{list.id}} - {{list.nombre}}</li>
-    {% endfor %}
-</ul>
+<h1>{{titulo}}</h1>
 
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Genero</th>
+        <th>Provincia</th>
+        <th>Escuela</th>
+        <th>Categoria</th>
+        <th>Prueba</th>
+        <th>Distancia</th>
+        <th>Tiempo Registro</th>
+        <th>Tiempo Competencia</th>
+    </tr>
+
+    {% for list in lista %}
+    <tr>
+        <td>{{list.id}}</td>
+        <td>{{list.nombre}}</td>
+        <td>{{list.genero}}</td>
+        <td>{{list.provincia}}</td>
+        <td>{{list.escuela}}</td>
+        <td>{{list.categoria}}</td>
+        <td>{{list.prueba}}</td>
+        <td>{{list.distancia}}</td>
+        <td>{{list.tiempo_registro}}</td>
+        <td>{{list.tiempo_competencia}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
 {% endblock %}
