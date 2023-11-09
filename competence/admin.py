@@ -9,7 +9,7 @@ Models = [
 ]
 """
 Models = [
-    Espalda
+    Espalda, Libre, Mariposa, Combinado, Pecho, Relevos, Snorkel
 ]
 
 admin.site.register(Models)

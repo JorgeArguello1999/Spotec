@@ -38,28 +38,28 @@ class Estudiante(models.Model):
     # Las categorias a las que se inscriban va a depender de su edad
 
     # Eventos en la mañana 
-    combinado_100m = models.FloatField(blank=True)
+    combinado_100m = models.FloatField(blank=True, null=True)
     
-    espalda_25m = models.FloatField(blank=True)
-    espalda_50m = models.FloatField(blank=True)
-    espalda_100m = models.FloatField(blank=True)
+    espalda_25m = models.FloatField(blank=True, null=True)
+    espalda_50m = models.FloatField(blank=True, null=True)
+    espalda_100m = models.FloatField(blank=True, null=True)
 
-    mariposa_25m = models.FloatField(blank=True)
-    mariposa_50m = models.FloatField(blank=True)
-    mariposa_100m = models.FloatField(blank=True)
+    mariposa_25m = models.FloatField(blank=True, null=True)
+    mariposa_50m = models.FloatField(blank=True, null=True)
+    mariposa_100m = models.FloatField(blank=True, null=True)
 
     # Eventos en la tarde
-    libre_25m_tarde = models.FloatField(blank=True)
-    libre_50m_tarde = models.FloatField(blank=True)
-    libre_100m_tarde = models.FloatField(blank=True)
+    libre_25m_tarde = models.FloatField(blank=True, null=True)
+    libre_50m_tarde = models.FloatField(blank=True, null=True)
+    libre_100m_tarde = models.FloatField(blank=True, null=True)
 
-    pecho_25m_tarde = models.FloatField(blank=True)
-    pecho_50m_tarde = models.FloatField(blank=True)
-    pecho_100m_tarde = models.FloatField(blank=True)
+    pecho_25m_tarde = models.FloatField(blank=True, null=True)
+    pecho_50m_tarde = models.FloatField(blank=True, null=True)
+    pecho_100m_tarde = models.FloatField(blank=True, null=True)
 
     # Extras
-    relevos_4x50_libre_mixto = models.FloatField(blank=True)
+    relevos_4x50_libre_mixto = models.FloatField(blank=True, null=True)
 
-    snorkel_libre_25m = models.FloatField(blank=True)
-    snorkel_libre_50m = models.FloatField(blank=True)
-    snorkel_libre_100m = models.FloatField(blank=True)
+    snorkel_libre_25m = models.FloatField(blank=True, null=True)
+    snorkel_libre_50m = models.FloatField(blank=True, null=True)
+    snorkel_libre_100m = models.FloatField(blank=True, null=True)
