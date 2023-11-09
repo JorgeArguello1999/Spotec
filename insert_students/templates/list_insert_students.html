@@ -5,10 +5,30 @@
 {% block content %}
 
 <h1>Alumnos Existentes</h1>
-<ul>
     {% for list in lista %}
     <li>{{list.}} - {{list.nombre}} - {{list.cedula}} - {{list.provincia}} </li>
     {% endfor %}
-</ul>
+
+<div class="list_students">
+    <table border="1">
+        <th>ID</th> <th>Nombre</th> <th>Cédula</th> <th>Provincia</th> <th>Escuela</th>
+        <th>Genero</th> <th>Categoria</th> <th>Combinado 100m</th> <th>Espalda 25m</th>
+        <th>Espalda 50m</th> <th>Espalda 100m</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+
+    </table>
+</div>
 
 {% endblock %}
