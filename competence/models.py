@@ -1,89 +1,28 @@
 from django.db import models
 
-class EspaldaHombre(models.Model):
-    id_estudiante = models.IntegerField()
-    nombre_estudiante = models.TextField(max_length=255)
-    provincia_estudiante = models.TextField(max_length=255)
-    escuela_estudiante = models.TextField(max_length=255)
+class ClaseBase(models.Model):
+    id = models.AutoField(primary_key=True)
+    cedula = models.CharField(max_length=10)
+    nombre = models.CharField(max_length=255)
+    provincia = models.CharField(max_length=255, null=True)
+    escuela = models.CharField(max_length=255, null=True)
+
+    genero = models.CharField(max_length=1)
+    categoria = models.CharField(max_length=3)
+
     tiempo_registro = models.FloatField()
     tiempo_competencia = models.FloatField()
 
-    def __str__(self):
-        return self.nombre_estudiante
-
-class BrazaHombre(models.Model):
-    id_estudiante = models.IntegerField()
-    nombre_estudiante = models.TextField(max_length=255)
-    provincia_estudiante = models.TextField(max_length=255)
-    escuela_estudiante = models.TextField(max_length=255)
-    tiempo_registro = models.FloatField()
-    tiempo_competencia = models.FloatField()
+    class Meta:
+        abstract = True
 
     def __str__(self):
-        return self.nombre_estudiante
+        return self.nombre
 
-class MariposaHombre(models.Model):
-    id_estudiante = models.IntegerField()
-    nombre_estudiante = models.TextField(max_length=255)
-    provincia_estudiante = models.TextField(max_length=255)
-    escuela_estudiante = models.TextField(max_length=255)
-    tiempo_registro = models.FloatField()
-    tiempo_competencia = models.FloatField()
-
-    def __str__(self):
-        return self.nombre_estudiante
-
-class LibreHombre(models.Model):
-    id_estudiante = models.IntegerField()
-    nombre_estudiante = models.TextField(max_length=255)
-    provincia_estudiante = models.TextField(max_length=255)
-    escuela_estudiante = models.TextField(max_length=255)
-    tiempo_registro = models.FloatField()
-    tiempo_competencia = models.FloatField()
-
-    def __str__(self):
-        return self.nombre_estudiante
-
-class MariposaMujer(models.Model):
-    id_estudiante = models.IntegerField()
-    nombre_estudiante = models.TextField(max_length=255)
-    provincia_estudiante = models.TextField(max_length=255)
-    escuela_estudiante = models.TextField(max_length=255)
-    tiempo_registro = models.FloatField()
-    tiempo_competencia = models.FloatField()
-
-    def __str__(self):
-        return self.nombre_estudiante
-
-class EspaldaMujer(models.Model):
-    id_estudiante = models.IntegerField()
-    nombre_estudiante = models.TextField(max_length=255)
-    provincia_estudiante = models.TextField(max_length=255)
-    escuela_estudiante = models.TextField(max_length=255)
-    tiempo_registro = models.FloatField()
-    tiempo_competencia = models.FloatField()
-
-    def __str__(self):
-        return self.nombre_estudiante
-
-class BrazaMujer(models.Model):
-    id_estudiante = models.IntegerField()
-    nombre_estudiante = models.TextField(max_length=255)
-    provincia_estudiante = models.TextField(max_length=255)
-    escuela_estudiante = models.TextField(max_length=255)
-    tiempo_registro = models.FloatField()
-    tiempo_competencia = models.FloatField()
-
-    def __str__(self):
-        return self.nombre_estudiante
-
-class LibreMujer(models.Model):
-    id_estudiante = models.IntegerField()
-    nombre_estudiante = models.TextField(max_length=255)
-    provincia_estudiante = models.TextField(max_length=255)
-    escuela_estudiante = models.TextField(max_length=255)
-    tiempo_registro = models.FloatField()
-    tiempo_competencia = models.FloatField()
-
-    def __str__(self):
-        return self.nombre_estudiante
+class Espalda(ClaseBase): pass
+class Mariposa(ClaseBase): pass
+class Combinado(ClaseBase): pass
+class Libre(ClaseBase): pass
+class Pecho(ClaseBase): pass
+class Relevos(ClaseBase): pass
+class Snorkel(ClaseBase): pass
