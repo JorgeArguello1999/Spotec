@@ -24,6 +24,28 @@ Categorias = (
     ("18C", "18 en adelante clasificados")
 )
 
+PruebasManana = (
+    ("MAR", "Mariposa"),
+    ("ESP", "Espalda"),
+    ("COM", "Combinado"),
+)
+
+PruebasTarde = (
+    ("LIB", "Libre"),
+    ("PEC", "Pecho"),
+)
+
+PruebasOpcionales = (
+    ("REL", "Relevos"),
+    ("SNO", "Snorkel"),
+)
+
+Distancia = (
+    ("25M", "25 metros"),
+    ("50M", "50 metros"),
+    ("10M", "100 metros"),
+)
+
 # Create your models here.
 class Estudiante(models.Model):
     id = models.AutoField(primary_key=True)
@@ -34,32 +56,32 @@ class Estudiante(models.Model):
     genero = models.CharField(max_length=1, choices=Genero)
     categoria = models.CharField(max_length=3, choices=Categorias)
 
-    # Desde aquí se puede modificar dependiendo que pruebas existan
-    # Las categorias a las que se inscriban va a depender de su edad
+    # Elegimos las categorias para la mañana
+    manana1_prueba = models.CharField(max_length=3, choices=PruebasManana, null=True, blank=True)
+    manana1_distancia = models.CharField(max_length=3, choices=Distancia, null=True, blank=True)
+    manana1_tiempo = models.FloatField(null=True, blank=True)
 
-    # Eventos en la mañana 
-    combinado_100m = models.FloatField(blank=True, null=True)
-    
-    espalda_25m = models.FloatField(blank=True, null=True)
-    espalda_50m = models.FloatField(blank=True, null=True)
-    espalda_100m = models.FloatField(blank=True, null=True)
+    manana2_prueba = models.CharField(max_length=3, choices=PruebasManana, null=True, blank=True)
+    manana2_distancia = models.CharField(max_length=3, choices=Distancia, null=True, blank=True)
+    manana2_tiempo = models.FloatField(null=True, blank=True)
 
-    mariposa_25m = models.FloatField(blank=True, null=True)
-    mariposa_50m = models.FloatField(blank=True, null=True)
-    mariposa_100m = models.FloatField(blank=True, null=True)
+    # Elegimos las categorias para la tarde
+    tarde1_prueba = models.CharField(max_length=3, choices=PruebasTarde, null=True, blank=True)
+    tarde1_distancia = models.CharField(max_length=3, choices=Distancia, null=True, blank=True)
+    tarde1_tiempo = models.FloatField(null=True, blank=True)
 
-    # Eventos en la tarde
-    libre_25m_tarde = models.FloatField(blank=True, null=True)
-    libre_50m_tarde = models.FloatField(blank=True, null=True)
-    libre_100m_tarde = models.FloatField(blank=True, null=True)
+    tarde2_prueba = models.CharField(max_length=3, choices=PruebasTarde, null=True, blank=True)
+    tarde2_distancia = models.CharField(max_length=3, choices=Distancia, null=True, blank=True)
+    tarde2_tiempo = models.FloatField(null=True, blank=True)
 
-    pecho_25m_tarde = models.FloatField(blank=True, null=True)
-    pecho_50m_tarde = models.FloatField(blank=True, null=True)
-    pecho_100m_tarde = models.FloatField(blank=True, null=True)
+    # Elegimos la categoria opcional
+    opcional1_prueba = models.CharField(max_length=3, choices=PruebasOpcionales, null=True, blank=True)
+    opcional1_distancia = models.CharField(max_length=3, choices=Distancia, null=True, blank=True)
+    opcional1_tiempo = models.FloatField(null=True, blank=True)
 
-    # Extras
-    relevos_4x50_libre_mixto = models.FloatField(blank=True, null=True)
+    opcional2_prueba = models.CharField(max_length=3, choices=PruebasOpcionales, null=True, blank=True)
+    opcional2_distancia = models.CharField(max_length=3, choices=Distancia, null=True, blank=True)
+    opcional2_tiempo = models.FloatField(null=True, blank=True)
 
-    snorkel_libre_25m = models.FloatField(blank=True, null=True)
-    snorkel_libre_50m = models.FloatField(blank=True, null=True)
-    snorkel_libre_100m = models.FloatField(blank=True, null=True)
+    def __str__(self):
+        return self.nombre

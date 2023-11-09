@@ -5,28 +5,56 @@
 {% block content %}
 
 <h1>Alumnos Existentes</h1>
-    {% for list in lista %}
-    <li>{{list.}} - {{list.nombre}} - {{list.cedula}} - {{list.provincia}} </li>
-    {% endfor %}
 
 <div class="list_students">
     <table border="1">
-        <th>ID</th> <th>Nombre</th> <th>Cédula</th> <th>Provincia</th> <th>Escuela</th>
-        <th>Genero</th> <th>Categoria</th> <th>Combinado 100m</th> <th>Espalda 25m</th>
-        <th>Espalda 50m</th> <th>Espalda 100m</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+
+    <tr>
+
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Cédula</th>
+        <th>Género</th>
+        <th>Provincia</th>
+        <th>Escuela</th>
+        <th>Cátegoria</th>
+        <th>Mañana</th>
+        <th>Tarde</th>
+        <th>Opcional</th>
+    </tr>
+
+    {% for list in lista %}
+    <tr>
+
+        <td>{{list.id}}</td>
+        <td>{{list.nombre}}</td>
+        <td>{{list.cedula}}</td>
+        <td>{{list.genero}}</td>
+        <td>{{list.provincia}}</td>
+        <td>{{list.escuela}}</td>
+        <td>{{list.categoria}}</td>
+
+        <td>
+            <ul>
+                <li>{{list.manana1_prueba}} - {{list.manana1_distancia}} - {{list.manana1_tiempo}}</li>
+                <li>{{list.manana2_prueba}} - {{list.manana2_distancia}} - {{list.manana2_tiempo}}</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>{{list.tarde1_prueba}} - {{list.tarde1_distancia}} - {{list.tarde1_tiempo}}</li>
+                <li>{{list.tarde2_prueba}} - {{list.tarde2_distancia}} - {{list.tarde2_tiempo}}</li>
+            </ul>
+        </td>
+        <td>
+            <ul>
+                <li>{{list.opcional1_prueba}} - {{list.opcional1_distancia}} - {{list.opcional1_tiempo}}</li>
+                <li>{{list.opcional2_prueba}} - {{list.opcional2_distancia}} - {{list.opcional2_tiempo}}</li>
+            </ul>
+        </td>
+
+    </tr>
+    {% endfor %}
 
     </table>
 </div>
