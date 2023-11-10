@@ -48,52 +48,86 @@ Distancia = (
 
 # Creamos una estructura de diccionario para almacenar la información
 def insert_student_in_compentence(data):
-    diccionario = {
-        "cedula": data["cedula"],
-        "nombre": data["nombre"],
-        "provincia": data["provincia"],
-        "escuela": data["escuela"],
-        "genero": data["genero"],
-        "categoria": data["categoria"],
-    }
-    eventos = []
+    if data["tarde1_prueba"] != "":
+        diccionario = {
+            "cedula": data["cedula"],
+            "nombre": data["nombre"],
+            "provincia": data["provincia"],
+            "escuela": data["escuela"],
+            "genero": data["genero"],
+            "categoria": data["categoria"],
+            "prueba": data["tarde1_prueba"],
+            "distancia": data["tarde1_distancia"],
+            "tiempo_registro": float(data["tarde1_tiempo"]),
+        }
+        Competencia.objects.create(**diccionario)
 
-    if data["tarde1_distancia"] != "" or data["tarde1_prueba"] != "":
-        diccionario["prueba"] = data["tarde1_prueba"]
-        diccionario["distancia"] = data["tarde1_distancia"]
-        diccionario["tiempo_registro"] = data["tarde1_tiempo"]
-        eventos.append(diccionario)
+    if data["tarde2_prueba"] != "":
+        diccionario = {
+            "cedula": data["cedula"],
+            "nombre": data["nombre"],
+            "provincia": data["provincia"],
+            "escuela": data["escuela"],
+            "genero": data["genero"],
+            "categoria": data["categoria"],
+            "prueba": data["tarde2_prueba"],
+            "distancia": data["tarde2_distancia"],
+            "tiempo_registro": float(data["tarde2_tiempo"]),
+        }
+        Competencia.objects.create(**diccionario)
 
-    if data["tarde2_distancia"] != "" or data["tarde2_prueba"] != "":
-        diccionario["prueba"] = data["tarde2_prueba"]
-        diccionario["distancia"] = data["tarde2_distancia"]
-        diccionario["tiempo_registro"] = data["tarde2_tiempo"]
-        eventos.append(diccionario)
-
-    if data["manana1_distancia"] != "" or data["manana1_prueba"] != "":
-        diccionario["prueba"] = data["manana1_prueba"]
-        diccionario["distancia"] = data["manana1_distancia"]
-        diccionario["tiempo_registro"] = data["manana1_tiempo"]
-        eventos.append(diccionario)
+    if data["manana1_prueba"] != "":
+        diccionario = {
+            "cedula": data["cedula"],
+            "nombre": data["nombre"],
+            "provincia": data["provincia"],
+            "escuela": data["escuela"],
+            "genero": data["genero"],
+            "categoria": data["categoria"],
+            "prueba": data["manana1_prueba"],
+            "distancia": data["manana1_distancia"],
+            "tiempo_registro": float(data["manana1_tiempo"]),
+        }
+        Competencia.objects.create(**diccionario)
        
-    if data["manana2_distancia"] != "" or data["manana2_prueba"] != "":
-        diccionario["prueba"] = data["manana2_prueba"]
-        diccionario["distancia"] = data["manana2_distancia"]
-        diccionario["tiempo_registro"] = data["manana2_tiempo"]
-        eventos.append(diccionario)   
+    if data["manana2_prueba"] != "":
+        diccionario = {
+            "cedula": data["cedula"],
+            "nombre": data["nombre"],
+            "provincia": data["provincia"],
+            "escuela": data["escuela"],
+            "genero": data["genero"],
+            "categoria": data["categoria"],
+            "prueba": data["manana2_prueba"],
+            "distancia": data["manana2_distancia"],
+            "tiempo_registro": float(data["manana2_tiempo"]),
+        }
+        Competencia.objects.create(**diccionario)
 
-    if data["opcional1_distancia"] != "" or data["opcional1_prueba"] != "":
-        diccionario["prueba"] = data["opcional1_prueba"]
-        diccionario["distancia"] = data["opcional1_distancia"]
-        diccionario["tiempo_registro"] = data["opcional1_tiempo"]
-        eventos.append(diccionario)   
+    if data["opcional1_prueba"] != "":
+        diccionario = {
+            "cedula": data["cedula"],
+            "nombre": data["nombre"],
+            "provincia": data["provincia"],
+            "escuela": data["escuela"],
+            "genero": data["genero"],
+            "categoria": data["categoria"],
+            "prueba": data["opcional1_prueba"],
+            "distancia": data["opcional1_distancia"],
+            "tiempo_registro": float(data["opcional1_tiempo"]),
+        }
+        Competencia.objects.create(**diccionario)
 
-    if data["opcional2_distancia"] != "" or data["opcional2_prueba"] != "":
-        diccionario["prueba"] = data["opcional2_prueba"]
-        diccionario["distancia"] = data["opcional2_distancia"]
-        diccionario["tiempo_registro"] = data["opcional2_tiempo"]
-        eventos.append(diccionario)   
-
-    print(diccionario)
-    print("---------")
-    print(eventos)
+    if data["opcional2_prueba"] != "":
+        diccionario = {
+            "cedula": data["cedula"],
+            "nombre": data["nombre"],
+            "provincia": data["provincia"],
+            "escuela": data["escuela"],
+            "genero": data["genero"],
+            "categoria": data["categoria"],
+            "prueba": data["opcional2_prueba"],
+            "distancia": data["opcional2_distancia"],
+            "tiempo_registro": float(data["opcional2_tiempo"]),
+        }
+        Competencia.objects.create(**diccionario)

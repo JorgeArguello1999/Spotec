@@ -14,6 +14,8 @@ def create(request):
     if request.method != "GET":
         # Pasamos los datos obtenidos a una función para insertarlo en la tabla competencia
         functions.insert_student_in_compentence(request.POST)
+
+        # Guardamos al Estudiante en la tabla estudiante
         salida = Estudiante_form(request.POST)
         salida.save()
         return redirect("list_insert_students")
