@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Estudiante
 from .forms import Estudiante_form
+from competence import functions
 
 # Create your views here.
 def list(request):
@@ -11,6 +12,8 @@ def list(request):
 
 def create(request):
     if request.method != "GET":
+        # Pasamos los datos obtenidos a una función para insertarlo en la tabla competencia
+        functions.insert_student_in_compentence(request.POST)
         salida = Estudiante_form(request.POST)
         salida.save()
         return redirect("list_insert_students")
