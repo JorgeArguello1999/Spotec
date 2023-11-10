@@ -16,4 +16,4 @@ class Competencia(models.Model):
     tiempo_competencia = models.FloatField(blank=True, null=True)
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre}-{self.categoria}-{self.genero}-{self.prueba}-{self.distancia}"
