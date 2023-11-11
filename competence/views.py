@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from .models import Competencia
+from django.http import JsonResponse
 from .functions import *
 
 def list_all(request):
@@ -28,7 +29,9 @@ def list_filter(request, distancia, genero, categoria, prueba):
         "titulo": f"{genero} - {categoria} - {prueba} - {distancia}"
     })
 
-def create(request):
-    return render(request, 'create_competence.html', {
-        "list":"list"
-    })
+# Esta función es para insertar las actualizaciones 
+def update(request):
+    if request.method == "POST":
+        pass
+
+    return HttpResponse(status=404)

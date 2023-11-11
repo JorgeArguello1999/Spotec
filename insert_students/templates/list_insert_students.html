@@ -4,24 +4,24 @@
 
 {% block content %}
 
-<h1>Alumnos Existentes</h1>
+<div class="list_students container mt-5">
+    <h1>Alumnos Existentes</h1>
 
-<div class="list_students">
-    <table border="1">
-
-    <tr>
-
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Cédula</th>
-        <th>Género</th>
-        <th>Provincia</th>
-        <th>Escuela</th>
-        <th>Cátegoria</th>
-        <th>Mañana</th>
-        <th>Tarde</th>
-        <th>Opcional</th>
-    </tr>
+    <table border="1" class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Cédula</th>
+            <th>Género</th>
+            <th>Provincia</th>
+            <th>Escuela</th>
+            <th>Cátegoria</th>
+            <th>Mañana</th>
+            <th>Tarde</th>
+            <th>Opcional</th>
+        </tr>
+    </thead>
 
     {% for list in lista %}
     <tr>

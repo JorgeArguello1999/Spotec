@@ -4,8 +4,6 @@
 
 {% block content %}
 
-<h1>{{titulo}}</h1>
-
 <script>
     function construirURL() {
         // Obtener los valores seleccionados
@@ -39,92 +37,95 @@
     
 </script>
 
-<form>
-    <label for="categoria">Categoría:</label>
-    <select id="categoria">
-        <option value="">----</option>
-        <option value="MEN">Menores 6 años</option>
-        <option value="7-8">7-8 años</option>
-        <option value="9NO">9 años novatos</option>
-        <option value="9CL">9 años clasificados</option>
-        <option value="10N">10 años novatos</option>
-        <option value="10C">10 años clasificados</option>
-        <option value="11N">11 años novatos</option>
-        <option value="11C">11 años clasificados</option>
-        <option value="12N">12 años novatos</option>
-        <option value="12C">12 años clasificados</option>
-        <option value="34N">13-14 años novatos</option>
-        <option value="34C">13-14 años clasificados</option>
-        <option value="57N">15-17 años novatos</option>
-        <option value="57C">15-17 años clasificados</option>
-        <option value="18N">18 en adelante novatos</option>
-        <option value="18C">18 en adelante clasificados</option>
-    </select>
+<div class="container mt-5">
+    <h1>{{titulo}}</h1>
+    <form>
+        <label for="categoria">Categoría:</label>
+        <select id="categoria">
+            <option value="">----</option>
+            <option value="MEN">Menores 6 años</option>
+            <option value="7-8">7-8 años</option>
+            <option value="9NO">9 años novatos</option>
+            <option value="9CL">9 años clasificados</option>
+            <option value="10N">10 años novatos</option>
+            <option value="10C">10 años clasificados</option>
+            <option value="11N">11 años novatos</option>
+            <option value="11C">11 años clasificados</option>
+            <option value="12N">12 años novatos</option>
+            <option value="12C">12 años clasificados</option>
+            <option value="34N">13-14 años novatos</option>
+            <option value="34C">13-14 años clasificados</option>
+            <option value="57N">15-17 años novatos</option>
+            <option value="57C">15-17 años clasificados</option>
+            <option value="18N">18 en adelante novatos</option>
+            <option value="18C">18 en adelante clasificados</option>
+        </select>
 
-    <label for="genero">Género:</label>
-    <select id="genero">
-        <option value="">----</option>
-        <option value="M">Masculino</option>
-        <option value="F">Femenino</option>
-    </select>
+        <label for="genero">Género:</label>
+        <select id="genero">
+            <option value="">----</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+        </select>
 
-    <label for="prueba">Prueba:</label>
-    <select id="prueba">
-        <option value="">----</option>
-        <option value="ESP">Espalda</option>
-        <option value="MAR">Mariposa</option>
-        <option value="COM">Combinado</option>
-        <option value="LIB">Libre</option>
-        <option value="PEC">Pecho</option>
-        <option value="REL">Relevos</option>
-        <option value="SNO">Snorkel</option>
-    </select>
+        <label for="prueba">Prueba:</label>
+        <select id="prueba">
+            <option value="">----</option>
+            <option value="ESP">Espalda</option>
+            <option value="MAR">Mariposa</option>
+            <option value="COM">Combinado</option>
+            <option value="LIB">Libre</option>
+            <option value="PEC">Pecho</option>
+            <option value="REL">Relevos</option>
+            <option value="SNO">Snorkel</option>
+        </select>
 
-    <label for="distancia">Distancia:</label>
-    <select id="distancia">
-        <option value="">----</option>
-        <option value="25M">25 Metros</option>
-        <option value="50M">50 Metros</option>
-        <option value="10M">100 Metros</option>
-    </select>
+        <label for="distancia">Distancia:</label>
+        <select id="distancia">
+            <option value="">----</option>
+            <option value="25M">25 Metros</option>
+            <option value="50M">50 Metros</option>
+            <option value="10M">100 Metros</option>
+        </select>
 
-    <!-- Agregamos un botón que llamará a la función JavaScript -->
-    <button type="button" onclick="construirURL()">Buscar</button>
-</form>
+        <!-- Agregamos un botón que llamará a la función JavaScript -->
+        <button type="button" onclick="construirURL()">Buscar</button>
+    </form>
 
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Genero</th>
-        <th>Provincia</th>
-        <th>Escuela</th>
-        <th>Categoria</th>
-        <th>Prueba</th>
-        <th>Distancia</th>
-        <th>Tiempo Registro</th>
-        <th>Tiempo Competencia</th>
-    </tr>
+    <table border="1" class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Genero</th>
+            <th>Provincia</th>
+            <th>Escuela</th>
+            <th>Categoria</th>
+            <th>Prueba</th>
+            <th>Distancia</th>
+            <th>Tiempo Registro</th>
+            <th>Tiempo Competencia</th>
+        </tr>
 
-    {% for list in lista %}
-    <tr>
-        <td>{{list.id}}</td>
-        <td>{{list.nombre}}</td>
-        <td>{{list.genero}}</td>
-        <td>{{list.provincia}}</td>
-        <td>{{list.escuela}}</td>
-        <td>{{list.categoria}}</td>
-        <td>{{list.prueba}}</td>
-        <td>{{list.distancia}}</td>
-        <td>{{list.tiempo_registro}}</td>
-        <td contenteditable="true" class="editable" data-id="{{list.id}}">
-            {{list.tiempo_competencia}}
-        </td>
-        <td>
-            <button class="guardar">Guardar</button>
-        </td>
-    </tr>
-    {% endfor %}
+        {% for list in lista %}
+        <tr>
+            <td>{{list.id}}</td>
+            <td>{{list.nombre}}</td>
+            <td>{{list.genero}}</td>
+            <td>{{list.provincia}}</td>
+            <td>{{list.escuela}}</td>
+            <td>{{list.categoria}}</td>
+            <td>{{list.prueba}}</td>
+            <td>{{list.distancia}}</td>
+            <td>{{list.tiempo_registro}}</td>
+            <td contenteditable="true" class="editable" data-id="{{list.id}}">
+                {{list.tiempo_competencia}}
+            </td>
+            <td>
+                <button class="guardar">💾</button>
+            </td>
+        </tr>
+        {% endfor %}
 
-</table>
+    </table>
+</div>
 {% endblock %}
