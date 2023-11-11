@@ -20,6 +20,23 @@
         // Redirigir a la URL construida
         window.location.href = url;
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('click', function (event) {
+            if (event.target.classList.contains('guardar')) {
+                const fila = event.target.closest('tr');
+                const id = fila.querySelector('.editable').getAttribute('data-id');
+                const nuevoTiempo = fila.querySelector('.editable').innerText;
+    
+                // Aquí puedes realizar cualquier lógica adicional antes de enviar los datos
+    
+                // Simulación de envío al servidor (puedes agregar AJAX aquí)
+                alert(`ID: ${id}, Nuevo Tiempo: ${nuevoTiempo}`);
+                // Lógica para enviar al servidor
+            }
+        });
+    });
+    
 </script>
 
 <form>
@@ -100,7 +117,12 @@
         <td>{{list.prueba}}</td>
         <td>{{list.distancia}}</td>
         <td>{{list.tiempo_registro}}</td>
-        <td>{{list.tiempo_competencia}}</td>
+        <td contenteditable="true" class="editable" data-id="{{list.id}}">
+            {{list.tiempo_competencia}}
+        </td>
+        <td>
+            <button class="guardar">Guardar</button>
+        </td>
     </tr>
     {% endfor %}
 
