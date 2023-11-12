@@ -6,6 +6,8 @@
 
 <div class="list_students container mt-5">
     <h1>Alumnos Existentes</h1>
+    
+    <a href="create/" class="btn btn-primary">➕ Añadir Estudiante</a>
 
     <table border="1" class="table table-bordered">
     <thead class="thead-dark">
@@ -53,10 +55,13 @@
             </ul>
         </td>
 
+        <td><a href="{% url 'delete_students' list.id %}" class="btn btn-danger">🗑️ Eliminar</a></td>
+
     </tr>
     {% endfor %}
 
     </table>
+
 </div>
 
 {% endblock %}

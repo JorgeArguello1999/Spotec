@@ -23,3 +23,7 @@ def create(request):
     return render(request, 'create_insert_students.html', {
         "form": Estudiante_form
     })
+
+def delete(request, student_id):
+    print(student_id)
+    return redirect("list_insert_students")
