@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} Ganadores | Listar {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1>{{titulo}}</h1>
+    <table border="1" class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Genero</th>
+            <th>Provincia</th>
+            <th>Escuela</th>
+            <th>Categoria</th>
+            <th>Prueba</th>
+            <th>Distancia</th>
+            <th>Tiempo Registro</th>
+            <th>Tiempo Competencia</th>
+        </tr>
+
+        {% for list in lista %}
+        <tr>
+            <td>{{list.id}}</td>
+            <td>{{list.nombre}}</td>
+            <td>{{list.genero}}</td>
+            <td>{{list.provincia}}</td>
+            <td>{{list.escuela}}</td>
+            <td>{{list.categoria}}</td>
+            <td>{{list.prueba}}</td>
+            <td>{{list.distancia}}</td>
+            <td>{{list.tiempo_registro}}</td>
+            <td>{{list.tiempo_competencia}}</td>
+            <td>{{list.puesto}}</td>
+            <td>{{list.puntaje}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+{% endblock %}
