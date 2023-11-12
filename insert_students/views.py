@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404
 from .models import Estudiante
 from .forms import Estudiante_form
 from competence import functions
+from competence.models import Competencia
 
 # Create your views here.
 def list(request):
@@ -24,6 +26,14 @@ def create(request):
         "form": Estudiante_form
     })
 
-def delete(request, student_id):
-    print(student_id)
+def delete(request, cedula):
+    student = get_object_or_404(Estudiante, cedula=cedula)
+    student.delete()
+
+    competence = Competencia.objects.filter(cedula=cedula)
+    competence.delete()
+
+    print(cedula)
+    print(student)
+    print(competence)
     return redirect("list_insert_students")

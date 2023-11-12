@@ -16,8 +16,8 @@
 
     <nav class="navbar navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1"> SpoTec</span>
-        <a class="navbar-brand" href="/insert_students/">Estudiantes</a>
-        <a class="navbar-brand" href="/competence/">Competencia</a>
+        <a class="navbar-brand" href="{% url 'list_insert_students' %}">Estudiantes</a>
+        <a class="navbar-brand" href="{% url 'list_all' %}">Competencia</a>
     </nav>
 
     {% block content %}

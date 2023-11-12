@@ -55,7 +55,13 @@
             </ul>
         </td>
 
-        <td><a href="{% url 'delete_students' list.id %}" class="btn btn-danger">🗑️ Eliminar</a></td>
+        <td>
+            <button id="deleteButton">
+                <a href="{% url 'delete_students' list.cedula %}" class="btn btn-danger">
+                    🗑️ Eliminar
+                </a>
+            </button>
+        </td>
 
     </tr>
     {% endfor %}
