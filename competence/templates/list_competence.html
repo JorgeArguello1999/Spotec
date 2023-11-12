@@ -26,11 +26,11 @@
                 const id = fila.querySelector('.editable').getAttribute('data-id');
                 const nuevoTiempo = fila.querySelector('.editable').innerText;
     
-                // Aquí puedes realizar cualquier lógica adicional antes de enviar los datos
-    
                 // Simulación de envío al servidor (puedes agregar AJAX aquí)
                 alert(`ID: ${id}, Nuevo Tiempo: ${nuevoTiempo}`);
-                // Lógica para enviar al servidor
+
+                var url = "/competence/update/" + id + "/" + nuevoTiempo;
+                window.location.href = url;
             }
         });
     });

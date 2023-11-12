@@ -33,7 +33,4 @@ def delete(request, cedula):
     competence = Competencia.objects.filter(cedula=cedula)
     competence.delete()
 
-    print(cedula)
-    print(student)
-    print(competence)
     return redirect("list_insert_students")
