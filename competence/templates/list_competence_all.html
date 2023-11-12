@@ -15,26 +15,24 @@
         // Construir la URL
         var url = '/competence/' + distancia + '/' + genero + '/' + categoria + '/' + prueba;
 
+        fetch(url)
+            .then(response => {
+            // La solicitud fue exitosa, pero no necesariamente hay datos para reflejar
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+        })
+        .catch(error => {
+            // Manejar errores aquí
+            console.error('Error en la solicitud POST:', error);
+        });
+
+    /*
         // Redirigir a la URL construida
         window.location.href = url;
+    */
     }
-
-    document.addEventListener('DOMContentLoaded', function () {
-        document.addEventListener('click', function (event) {
-            if (event.target.classList.contains('guardar')) {
-                const fila = event.target.closest('tr');
-                const id = fila.querySelector('.editable').getAttribute('data-id');
-                const nuevoTiempo = fila.querySelector('.editable').innerText;
-    
-                // Simulación de envío al servidor (puedes agregar AJAX aquí)
-                alert(`ID: ${id}, Nuevo Tiempo: ${nuevoTiempo}`);
-
-                var url = "/competence/update/" + id + "/" + nuevoTiempo;
-                window.open(url);
-            }
-        });
-    });
-    
+   
 </script>
 
 <div class="container mt-5">
@@ -117,15 +115,9 @@
             <td>{{list.prueba}}</td>
             <td>{{list.distancia}}</td>
             <td>{{list.tiempo_registro}}</td>
-            <td contenteditable="true" class="editable" data-id="{{list.id}}">
-                {{list.tiempo_competencia}}
-            </td>
-            <td>
-                <button class="guardar">💾</button>
-            </td>
+            <td>{{list.tiempo_competencia}}</td>
         </tr>
         {% endfor %}
     </table>
-    <button class="btn btn btn-success">Generar Ganadores</button>
 </div>
 {% endblock %}

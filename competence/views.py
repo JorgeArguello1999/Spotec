@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect 
+from django.shortcuts import render, redirect, HttpResponse
 from .models import Competencia
 from .functions import *
 
@@ -6,7 +6,7 @@ def list_all(request):
     lista = Competencia.objects.all()
     lista = lista.order_by("genero", "categoria", "prueba", "distancia", "tiempo_registro")
 
-    return render(request, 'list_competence.html', {
+    return render(request, 'list_competence_all.html', {
         "lista": lista,
         "titulo": "Todas las competencias",
     })
@@ -38,4 +38,4 @@ def update(request, student_id, tiempo):
         
     registro.save()
 
-    return redirect("list_all")
+    return HttpResponse("<script>window.close();</script>")
