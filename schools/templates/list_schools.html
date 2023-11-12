@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} Ganadores | Listar {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <h1>{{titulo}}</h1>
+
+    <a href="{% url 'create_school' %}" class="btn btn-primary">➕ Añadir Estudiante</a>
+
+    <table border="1" class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+
+        {% for list in lista %}
+        <tr>
+            <td>{{list.id}}</td>
+            <td>{{list.nombre}}</td>
+            <td>
+                <a class="btn btn-danger" href="{% url 'delete_school' list.id %}">
+                🗑️ Eliminar
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+{% endblock %}
