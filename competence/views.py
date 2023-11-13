@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.contrib.auth.decorators import login_required
 from .models import Competencia
 from .functions import *
 import json
 
+@login_required
 def list_all(request):
     lista = Competencia.objects.all()
     lista = lista.order_by("genero", "categoria", "prueba", "distancia", "tiempo_registro")
@@ -12,6 +14,7 @@ def list_all(request):
         "titulo": "Todas las competencias",
     })
 
+@login_required
 def list_filter(request, distancia, genero, categoria, prueba):
     lista = Competencia.objects.filter(distancia=distancia, genero=genero, categoria=categoria, prueba=prueba)
     especial = "NO"
@@ -38,6 +41,7 @@ def list_filter(request, distancia, genero, categoria, prueba):
     })
 
 # Esta función es para insertar las actualizaciones 
+@login_required
 def update(request, student_id, tiempo):
     registro = Competencia.objects.get(id=student_id)
     try:

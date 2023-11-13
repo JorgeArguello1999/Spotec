@@ -24,6 +24,7 @@ def signin(request):
     login(request, user)
     return redirect("home")
 
+@login_required
 def signup(request):
     if request.method == "GET":
         return render(request, "signup.html", {
@@ -45,6 +46,7 @@ def signup(request):
                 "error": "Usuario ya existe"
             })
 
+@login_required
 def signout(request):
     logout(request)
     return redirect("signin")
