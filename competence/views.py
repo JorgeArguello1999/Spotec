@@ -25,7 +25,7 @@ def list_filter(request, distancia, genero, categoria, prueba):
     lista = lista.order_by("distancia")
     return render(request, 'list_competence.html', {
         "lista": lista,
-        "titulo": f"{genero} - {categoria} - {prueba} - {distancia}"
+        "titulo": f"{genero}-{categoria}-{prueba}-{distancia}"
     })
 
 # Esta función es para insertar las actualizaciones 
