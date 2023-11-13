@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from .models import Estudiante
@@ -6,12 +7,14 @@ from competence import functions
 from competence.models import Competencia
 
 # Create your views here.
+@login_required
 def list(request):
     lista = Estudiante.objects.all()
     return render(request, 'list_insert_students.html', {
         "lista": lista
     })
 
+@login_required
 def create(request):
     if request.method != "GET":
         # Pasamos los datos obtenidos a una función para insertarlo en la tabla competencia
@@ -26,6 +29,7 @@ def create(request):
         "form": Estudiante_form
     })
 
+@login_required
 def delete(request, cedula):
     student = get_object_or_404(Estudiante, cedula=cedula)
     student.delete()
