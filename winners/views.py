@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Ganadores
-import json
+from .functions import create_ganadores
 
 # Create your views here.
 def list_all(request):
@@ -18,11 +18,6 @@ def list_filter(request, distancia, genero, categoria, prueba):
 
 def create(request):
     if request.method != "GET":
-        salida = request.POST
-        datos = {
-            "nombre": salida["nombre"],
-            "datos": salida["datos"]
-        }
-        Ganadores.objects.create(**datos)
+        create_ganadores(request.POST)
 
     return redirect("list_winners") 

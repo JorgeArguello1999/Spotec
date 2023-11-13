@@ -14,20 +14,27 @@ def list_all(request):
 
 def list_filter(request, distancia, genero, categoria, prueba):
     lista = Competencia.objects.filter(distancia=distancia, genero=genero, categoria=categoria, prueba=prueba)
+    especial = "NO"
 
     if prueba == "REL":
         # En relevos se aceptan Hombre y Mujeres y la distancia es fija
         lista = Competencia.objects.filter(categoria=categoria, prueba=prueba)
+        especial = "REL, no Genero, no distancia"
     
     if prueba == "COM":
         # En combinados la distancia es fija
         lista = Competencia.objects.filter(genero=genero, categoria=categoria, prueba=prueba)
+        especial = "COM, no distancia"
 
     lista = lista.order_by("distancia")
     return render(request, 'list_competence.html', {
         "lista": lista,
         "titulo": f"{genero}-{categoria}-{prueba}-{distancia}",
-        "values": list(lista.values())
+        "distancia": distancia,
+        "genero": genero,
+        "categoria": categoria,
+        "prueba": prueba,
+        "especial": especial
     })
 
 # Esta función es para insertar las actualizaciones 

@@ -129,8 +129,11 @@
 
     <form action="{% url 'create_winners' %}" method="post">
         {% csrf_token %}
-        <input type="hidden" name="nombre" value="{{titulo}}">
-        <input type="hidden" name="datos" value="{{values}}">
+        <input type="hidden" name="distancia" value="{{distancia}}">
+        <input type="hidden" name="genero" value="{{genero}}">
+        <input type="hidden" name="categoria" value="{{categoria}}">
+        <input type="hidden" name="prueba" value="{{prueba}}">
+        <input type="hidden" name="especial" value="{{especial}}">
         <button class="btn btn btn-success">Generar Ganadores</button>
     </form>
 </div>
