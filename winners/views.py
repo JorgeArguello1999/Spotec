@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect
 from .models import Ganadores
-from competence.models import Competencia
+import json
 
 # Create your views here.
 def list_all(request):
-    competidores = Competencia.objects.all()
+    competidores = Ganadores.objects.all()
+    lista = list(competidores.values())
+    print(lista)
 
     return render(request, "list_winners.html", {
         "titulo": "Ganadores",
-        "lista": competidores
+        "lista": lista
     })
 
 def list_filter(request, distancia, genero, categoria, prueba):
@@ -17,8 +19,10 @@ def list_filter(request, distancia, genero, categoria, prueba):
 def create(request):
     if request.method != "GET":
         salida = request.POST
-        print(salida["titulo"])
-        print(salida["dataset"])
-        print(type(salida["dataset"]))
+        datos = {
+            "nombre": salida["nombre"],
+            "datos": salida["datos"]
+        }
+        Ganadores.objects.create(**datos)
 
     return redirect("list_winners") 
