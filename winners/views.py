@@ -1,19 +1,26 @@
 from django.shortcuts import render, redirect
 from .models import Ganadores
 from .functions import create_ganadores
+from schools.models import Escuelas
+
+# Todas las escuelas
 
 # Create your views here.
 def list_all(request):
+    escuelas = Escuelas.objects.all()
+
     competidores = Ganadores.objects.all()
     lista = list(competidores.values())
-    print(lista)
 
     return render(request, "list_winners.html", {
         "titulo": "Ganadores",
-        "lista": lista
+        "lista": lista,
+        "escuelas": escuelas
     })
 
 def list_filter(request, distancia, genero, categoria, prueba):
+    escuelas = Escuelas.objects.all()
+
     lista = Ganadores.objects.filter(distancia=distancia, genero=genero, categoria=categoria, prueba=prueba)
 
     if prueba == "REL":
@@ -28,6 +35,15 @@ def list_filter(request, distancia, genero, categoria, prueba):
     return render(request, 'list_winners.html', {
         "lista": lista,
         "titulo": f"{genero}-{categoria}-{prueba}-{distancia}",
+        "escuelas": escuelas
+    })
+
+def list_schools_filter(request, school_name):
+    escuelas = Escuelas.objects.all()
+    print(school_name)
+    return render(request, 'list_schools_filter.html', {
+        "name": school_name,
+        "escuelas": escuelas
     })
 
 def create(request):
