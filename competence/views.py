@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from .models import Competencia
 from .functions import *
+import json
 
 def list_all(request):
     lista = Competencia.objects.all()
@@ -25,7 +26,8 @@ def list_filter(request, distancia, genero, categoria, prueba):
     lista = lista.order_by("distancia")
     return render(request, 'list_competence.html', {
         "lista": lista,
-        "titulo": f"{genero}-{categoria}-{prueba}-{distancia}"
+        "titulo": f"{genero}-{categoria}-{prueba}-{distancia}",
+        "values": list(lista.values())
     })
 
 # Esta función es para insertar las actualizaciones 

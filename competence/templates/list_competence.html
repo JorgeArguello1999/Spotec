@@ -126,6 +126,12 @@
         </tr>
         {% endfor %}
     </table>
-    <button class="btn btn btn-success">Generar Ganadores</button>
+
+    <form action="{% url 'create_winners' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="titulo" value="{{titulo}}">
+        <input type="hidden" name="dataset" value="{{values}}">
+        <button class="btn btn btn-success">Generar Ganadores</button>
+    </form>
 </div>
 {% endblock %}
