@@ -17,7 +17,7 @@ def create_ganadores(data):
     puntos = 9
     for i in competidores:
         datos = {
-            "id_student": i.id,
+            "id": i.id,
             "cedula": i.cedula,
             "nombre": i.nombre,
             "provincia": i.provincia,
@@ -36,5 +36,5 @@ def create_ganadores(data):
         else: puntos = puntos - 1 
         puesto = puesto + 1 
 
-        # Configurar para que id_student sea PK
+        # Falla al actualizar el registro
         Ganadores.objects.update_or_create(**datos)

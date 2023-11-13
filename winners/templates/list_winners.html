@@ -4,8 +4,78 @@
 
 {% block content %}
 
+<script>
+    function construirURL() {
+        // Obtener los valores seleccionados
+        var distancia = document.getElementById('distancia').value;
+        var genero = document.getElementById('genero').value;
+        var categoria = document.getElementById('categoria').value;
+        var prueba = document.getElementById('prueba').value;
+
+        // Construir la URL
+        var url = '/winners/' + distancia + '/' + genero + '/' + categoria + '/' + prueba;
+
+        // Redirigir a la URL construida
+        window.location.href = url;
+    }
+</script>
+
 <div class="container mt-5">
     <h1>{{titulo}}</h1>
+
+    <form>
+        <label for="categoria">Categoría:</label>
+        <select id="categoria">
+            <option value="">----</option>
+            <option value="MEN">Menores 6 años</option>
+            <option value="7-8">7-8 años</option>
+            <option value="9NO">9 años novatos</option>
+            <option value="9CL">9 años clasificados</option>
+            <option value="10N">10 años novatos</option>
+            <option value="10C">10 años clasificados</option>
+            <option value="11N">11 años novatos</option>
+            <option value="11C">11 años clasificados</option>
+            <option value="12N">12 años novatos</option>
+            <option value="12C">12 años clasificados</option>
+            <option value="34N">13-14 años novatos</option>
+            <option value="34C">13-14 años clasificados</option>
+            <option value="57N">15-17 años novatos</option>
+            <option value="57C">15-17 años clasificados</option>
+            <option value="18N">18 en adelante novatos</option>
+            <option value="18C">18 en adelante clasificados</option>
+        </select>
+
+        <label for="genero">Género:</label>
+        <select id="genero">
+            <option value="">----</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+        </select>
+
+        <label for="prueba">Prueba:</label>
+        <select id="prueba">
+            <option value="">----</option>
+            <option value="ESP">Espalda</option>
+            <option value="MAR">Mariposa</option>
+            <option value="COM">Combinado</option>
+            <option value="LIB">Libre</option>
+            <option value="PEC">Pecho</option>
+            <option value="REL">Relevos</option>
+            <option value="SNO">Snorkel</option>
+        </select>
+
+        <label for="distancia">Distancia:</label>
+        <select id="distancia">
+            <option value="">----</option>
+            <option value="25M">25 Metros</option>
+            <option value="50M">50 Metros</option>
+            <option value="10M">100 Metros</option>
+        </select>
+
+        <!-- Agregamos un botón que llamará a la función JavaScript -->
+        <button type="button" onclick="construirURL()">Buscar</button>
+    </form>
+
     <table border="1" class="table table-bordered">
         <tr>
             <th>ID</th>
@@ -41,11 +111,5 @@
 
     </table>
 </div>
-
-{% for item in lista %}
-  {% for lis in item.datos %}
-  {% endfor %}
-{% endfor %}
-
 
 {% endblock %}
