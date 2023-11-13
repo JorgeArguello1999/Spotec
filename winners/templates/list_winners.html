@@ -76,17 +76,6 @@
         <button type="button" onclick="construirURL()">Buscar</button>
     </form>
 
-    <form action="">
-        <label for="">Selecciona tu Escuela</label>
-        <select id="school_name">
-            <option value="">--------</option>
-            {% for escuela in escuelas %}
-            <option value="{{escuela.nombre}}">{{escuela.nombre}}</option>
-            {% endfor %}
-        </select>
-        <button type="button">Buscar Escuela</button>
-    </form>
-
     <table border="1" class="table table-bordered">
         <tr>
             <th>ID</th>

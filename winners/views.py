@@ -40,10 +40,17 @@ def list_filter(request, distancia, genero, categoria, prueba):
 
 def list_schools_filter(request, school_name):
     escuelas = Escuelas.objects.all()
-    print(school_name)
+
+    puntos_escuela = Ganadores.objects.raw(f"SELECT id, SUM(puntaje) AS suma_total FROM winners_ganadores where escuela = '{school_name}';")
+    competencias_escuela = Ganadores.objects.filter(escuela=school_name)
+
+    print(puntos_escuela)
+
     return render(request, 'list_schools_filter.html', {
         "name": school_name,
-        "escuelas": escuelas
+        "escuelas": escuelas, 
+        "puntos": puntos_escuela,
+        "lista": competencias_escuela
     })
 
 def create(request):
