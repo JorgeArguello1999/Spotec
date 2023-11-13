@@ -16,8 +16,8 @@ class Ganadores(models.Model):
     tiempo_registro = models.FloatField(blank=True, null=True)
     tiempo_competencia = models.FloatField(blank=True, null=True)
 
-    puesto = models.IntegerField()
-    puntaje = models.IntegerField()
+    puesto = models.IntegerField(blank=True, null=True)
+    puntaje = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.nombre}-{self.categoria}-{self.genero}-{self.prueba}-{self.distancia}"
