@@ -1,22 +1,6 @@
 from .models import Ganadores
 from competence.models import Competencia
 
-"""
-
-    genero = models.CharField(max_length=1)
-    categoria = models.CharField(max_length=3)
-    prueba = models.CharField(max_length=3)
-    distancia = models.CharField(max_length=3)
-
-    tiempo_registro = models.FloatField(blank=True, null=True)
-    tiempo_competencia = models.FloatField(blank=True, null=True)
-
-    puesto = models.IntegerField(blank=True, null=True)
-    puntaje = models.IntegerField(blank=True, null=True)
-
-
-"""
-
 def create_ganadores(data):
     competidores = None
     if data["especial"] == "NO": competidores = Competencia.objects.filter(
@@ -48,8 +32,9 @@ def create_ganadores(data):
             "puntaje": puntos 
         }
         if puesto == 1: puntos = puntos - 2
+        elif puesto == 0: puntos = 0
         else: puntos = puntos - 1 
         puesto = puesto + 1 
 
-        objeto = Ganadores.objects.create(**datos)
-        objeto.save()
+        # Configurar para que id_student sea PK
+        Ganadores.objects.update_or_create(**datos)

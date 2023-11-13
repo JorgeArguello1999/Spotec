@@ -26,7 +26,7 @@ def list_filter(request, distancia, genero, categoria, prueba):
         lista = Competencia.objects.filter(genero=genero, categoria=categoria, prueba=prueba)
         especial = "COM, no distancia"
 
-    lista = lista.order_by("distancia")
+    lista = lista.order_by("tiempo_registro")
     return render(request, 'list_competence.html', {
         "lista": lista,
         "titulo": f"{genero}-{categoria}-{prueba}-{distancia}",
