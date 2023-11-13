@@ -114,6 +114,22 @@
 
     </table>
 
+    <h1>Puntos por Escuelas</h1>
+    <table border="1" class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+
+        {% for escuela in escuelas %}
+        <tr>
+            <td>{{escuela.id}}</td>
+            <td><a href="{% url 'list_school_filter' escuela.nombre %}">{{escuela.nombre}}</a></td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
 </div>
 
 {% endblock %}
