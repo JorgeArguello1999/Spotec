@@ -1,7 +1,8 @@
 from django.db import models
 
 class Ganadores(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
+    id_student = models.IntegerField()
     cedula = models.CharField(max_length=10)
     nombre = models.CharField(max_length=255)
     provincia = models.CharField(max_length=255, null=True)
