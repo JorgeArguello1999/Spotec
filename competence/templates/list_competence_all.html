@@ -15,24 +15,22 @@
         // Construir la URL
         var url = '/competence/' + distancia + '/' + genero + '/' + categoria + '/' + prueba;
 
-        fetch(url)
-            .then(response => {
-            // La solicitud fue exitosa, pero no necesariamente hay datos para reflejar
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-        })
-        .catch(error => {
-            // Manejar errores aquí
-            console.error('Error en la solicitud POST:', error);
-        });
-
-    /*
         // Redirigir a la URL construida
         window.location.href = url;
-    */
     }
-   
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('click', function (event) {
+            if (event.target.classList.contains('guardar')) {
+                const fila = event.target.closest('tr');
+                const id = fila.querySelector('.editable').getAttribute('data-id');
+                const nuevoTiempo = fila.querySelector('.editable').innerText;
+    
+                var url = "/competence/update/" + id + "/" + nuevoTiempo;
+                window.open(url);
+            }
+        });
+    });
 </script>
 
 <div class="container mt-5">

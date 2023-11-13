@@ -26,14 +26,18 @@
                 const id = fila.querySelector('.editable').getAttribute('data-id');
                 const nuevoTiempo = fila.querySelector('.editable').innerText;
     
-                // Simulación de envío al servidor (puedes agregar AJAX aquí)
-                alert(`ID: ${id}, Nuevo Tiempo: ${nuevoTiempo}`);
-
                 var url = "/competence/update/" + id + "/" + nuevoTiempo;
                 window.open(url);
             }
         });
     });
+
+    function confirmacion(){
+        var confirmacion = confirm("Esta acción es irreversible, ¿Está Seguro?");
+        if(!confirmacion){
+            event.preventDefault();
+        }
+    }
     
 </script>
 
@@ -134,7 +138,7 @@
         <input type="hidden" name="categoria" value="{{categoria}}">
         <input type="hidden" name="prueba" value="{{prueba}}">
         <input type="hidden" name="especial" value="{{especial}}">
-        <button class="btn btn btn-success">Generar Ganadores</button>
+        <button id="generarGanadores" class="btn btn btn-success" onclick="confirmacion()">Generar Ganadores</button>
     </form>
 </div>
 {% endblock %}
