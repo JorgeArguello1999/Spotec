@@ -21,7 +21,8 @@ def create(request):
         # Pasamos los datos obtenidos a una función para insertarlo en la tabla competencia
         functions.insert_student_in_compentence(request.POST)
 
-        data_dict = {
+        try:
+            salida = Estudiante.objects.create(**{
             'cedula': request.POST['cedula'],
             'nombre': request.POST['nombre'],
             'provincia': request.POST.get('provincia', None),
@@ -46,17 +47,15 @@ def create(request):
             'opcional2_prueba': request.POST.get('opcional2_prueba', None),
             'opcional2_distancia': request.POST.get('opcional2_distancia', None),
             'opcional2_tiempo': request.POST.get('opcional2_tiempo', None),
-        }
-        print(request.POST)
-        print(data_dict)
-
-        # Guardamos al Estudiante en la tabla estudiante
-        try:
-            salida = Estudiante_form(data_dict)
+            })
+            print(request.POST)
+            print(salida)
             salida.save()
         except:
-            salida = Estudiante.objects.create(data_dict)
-            salida.save()
+            redirect("list_insert_students")
+
+
+        # Guardamos al Estudiante en la tabla estudiante
         return redirect("list_insert_students")
     
     # Devolvemos el formulario
