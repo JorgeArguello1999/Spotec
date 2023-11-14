@@ -1,16 +1,17 @@
 from django.shortcuts import render, redirect
 from .models import Ganadores
 from .functions import create_ganadores
+from .functions import list_schools_winners 
 from schools.models import Escuelas
 
 # Todas las escuelas
 
 # Create your views here.
 def list_all(request):
-    escuelas = Escuelas.objects.all()
-
     competidores = Ganadores.objects.all()
     lista = list(competidores.values())
+
+    escuelas = list_schools_winners()
 
     return render(request, "list_winners.html", {
         "titulo": "Ganadores",
@@ -19,7 +20,7 @@ def list_all(request):
     })
 
 def list_filter(request, distancia, genero, categoria, prueba):
-    escuelas = Escuelas.objects.all()
+    escuelas = list_schools_winners()
 
     lista = Ganadores.objects.filter(distancia=distancia, genero=genero, categoria=categoria, prueba=prueba)
 
@@ -39,7 +40,7 @@ def list_filter(request, distancia, genero, categoria, prueba):
     })
 
 def list_schools_filter(request, school_name):
-    escuelas = Escuelas.objects.all()
+    escuelas = list_schools_winners()
 
     puntos_escuela = Ganadores.objects.raw(f"SELECT id, SUM(puntaje) AS suma_total FROM winners_ganadores where escuela = '{school_name}';")
     competencias_escuela = Ganadores.objects.filter(escuela=school_name)

@@ -1,13 +1,12 @@
+# forms.py de tu aplicación 'insert_students'
 from django import forms
 from .models import Estudiante
 from schools.models import Escuelas
 from competence.functions import Genero, Categorias, PruebasManana, PruebasTarde, PruebasOpcionales, Distancia
 
 class Estudiante_form(forms.ModelForm):
-    escuelas_choices = [('','---------')] + [(escuela.nombre, escuela.nombre) for escuela in Escuelas.objects.all()]
-    escuela = forms.ChoiceField(choices=escuelas_choices, required=False)
+    escuela = forms.ModelChoiceField(queryset=Escuelas.objects.all())
 
-    
     class Meta:
         model = Estudiante 
         fields = [
@@ -21,6 +20,8 @@ class Estudiante_form(forms.ModelForm):
         ]
 
     def __init__(self, *args, **kwargs):
+        # Asegúrate de eliminar el argumento escuelas_choices
+        escuelas_choices = kwargs.pop('escuelas_choices', None)
         super().__init__(*args, **kwargs)
         
         # Añade las opciones predefinidas a los campos de selección
@@ -33,10 +34,6 @@ class Estudiante_form(forms.ModelForm):
         ]:
             self.fields[field_name].choices = choices
 
-        # Establece valores predeterminados para los campos de tiempo
-        for field_name in [
-            'manana1_tiempo', 'manana2_tiempo',
-            'tarde1_tiempo', 'tarde2_tiempo',
-            'opcional1_tiempo', 'opcional2_tiempo',
-        ]:
-            self.fields[field_name].initial = 0
+        # Configura las opciones para el campo de escuela
+        if escuelas_choices:
+            self.fields['escuela'].choices = escuelas_choices

@@ -81,12 +81,14 @@
         <tr>
             <th>ID</th>
             <th>Nombre</th>
+            <th>Puntos</th>
         </tr>
         
         {% for escuela in escuelas %}
         <tr>
             <td>{{escuela.id}}</td>
             <td><a href="{% url 'list_school_filter' escuela.nombre %}">{{escuela.nombre}}</a></td>
+            <td>{{escuela.puntos}}</td>
         </tr>
         {% endfor %}
 
