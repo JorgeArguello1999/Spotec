@@ -2,7 +2,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.shortcuts import get_object_or_404
 from .models import Estudiante
-from schools.models import Escuelas
 from .forms import Estudiante_form
 from competence import functions
 from competence.models import Competencia
@@ -22,15 +21,12 @@ def create(request):
         functions.insert_student_in_compentence(request.POST)
 
         # Guardamos al Estudiante en la tabla estudiante
-        salida = Estudiante_form(request.POST, escuelas_choices=[('', '---------')] + [(escuela.nombre, escuela.nombre) for escuela in Escuelas.objects.all()])
+        salida = Estudiante_form(request.POST)
         salida.save()
         return redirect("list_insert_students")
     
-    escuelas_choices = [('','---------')] + [(escuela.nombre, escuela.nombre) for escuela in Escuelas.objects.all()]
-    form = Estudiante_form(escuelas_choices=escuelas_choices)
     return render(request, 'create_insert_students.html', {
-        'form': form, 
-        'escuelas_choices': escuelas_choices
+        "form": Estudiante_form
     })
 
 @login_required
