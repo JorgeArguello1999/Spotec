@@ -7,7 +7,7 @@
 __pycache__/
 
 # Carpeta de migraciones de Django
-*/migrations/
+# */migrations/
 
 # Archivo de registro (logs)
 *.log
