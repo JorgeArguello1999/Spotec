@@ -3,10 +3,11 @@ from .models import Estudiante
 from schools.models import Escuelas
 from competence.functions import Genero, Categorias, PruebasManana, PruebasTarde, PruebasOpcionales, Distancia
 
+import random
+
 class Estudiante_form(forms.ModelForm):
     escuelas_choices = [('','---------')] + [(escuela.nombre, escuela.nombre) for escuela in Escuelas.objects.all()]
     escuela = forms.ChoiceField(choices=escuelas_choices, required=False)
-
     
     class Meta:
         model = Estudiante 
@@ -22,16 +23,6 @@ class Estudiante_form(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        # Añade las opciones predefinidas a los campos de selección
-        for field_name, choices in [
-            ('genero', Genero),
-            ('categoria', Categorias),
-            ('manana1_prueba', PruebasManana),
-            ('manana1_distancia', Distancia),
-            # ... Añade otras opciones predefinidas según sea necesario
-        ]:
-            self.fields[field_name].choices = choices
 
         # Establece valores predeterminados para los campos de tiempo
         for field_name in [
@@ -40,3 +31,5 @@ class Estudiante_form(forms.ModelForm):
             'opcional1_tiempo', 'opcional2_tiempo',
         ]:
             self.fields[field_name].initial = 0
+        
+        self.fields["cedula"].initial = random.randint(1, 1000000000)
