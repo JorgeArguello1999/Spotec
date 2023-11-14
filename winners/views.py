@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Ganadores
 from .functions import create_ganadores
+from django.db.models import Sum
 from .functions import list_schools_winners 
 from schools.models import Escuelas
 
@@ -42,7 +43,7 @@ def list_filter(request, distancia, genero, categoria, prueba):
 def list_schools_filter(request, school_name):
     escuelas = list_schools_winners()
 
-    puntos_escuela = Ganadores.objects.raw(f"SELECT id, SUM(puntaje) AS suma_total FROM winners_ganadores where escuela = '{school_name}';")
+    puntos_escuela = Ganadores.objects.filter(escuela=school_name).aggregate(suma_total=Sum('puntaje'))
     competencias_escuela = Ganadores.objects.filter(escuela=school_name)
 
     print(puntos_escuela)
