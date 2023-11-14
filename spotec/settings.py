@@ -93,9 +93,10 @@ WSGI_APPLICATION = "spotec.wsgi.application"
 
 # Configurar la base de datos (Tener en cuenta que solo esta para producción)
 DATABASES = {
-    "default": dj_database_url.config(
-    )
-}
+    'default': dj_database_url.config(
+        default='postgresql://postgres:postgres@localhost:5432/mysite',
+        conn_max_age=600    
+    )}
 
 
 # Password validation
