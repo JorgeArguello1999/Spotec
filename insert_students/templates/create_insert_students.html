@@ -5,15 +5,25 @@
 {% block content %}
 
 <div class="container mt-5">
-    <h1>Crear Alumno</h1>
+<form method="post" class="form-group">
+        {% csrf_token %}
+        <!-- Renderiza los campos generados automáticamente por Django usando form.as_p -->
+        {{ form.as_p }}
+    
+        <!-- Personaliza el campo de la escuela -->
+        <div class="fieldWrapper">
+            <label for="id_escuela">Escuela:</label>
+            <select name="escuela" id="id_escuela">
+                {% for choice in escuelas_choices %}
+                    <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    
+        <input type="submit" value="Guardar" class="btn btn-primary">
 
-    <div class="form-group">
-        <form action="" method="post" class="form">
-            {% csrf_token %}
-            {{form.as_p}}
-            <button class="btn btn-primary">Enviar</button>
-        </form>
-    </div>
+</form>
 </div>
+
 
 {% endblock %}
