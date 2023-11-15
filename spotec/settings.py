@@ -14,6 +14,9 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+# Cargamos PostGres
+import dj_database_url
+
 # Cargamos las variables
 load_dotenv()
 
