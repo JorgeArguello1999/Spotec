@@ -6,9 +6,6 @@ from competence.functions import Genero, Categorias, PruebasManana, PruebasTarde
 import random
 
 class Estudiante_form(forms.ModelForm):
-    escuelas_choices = [('','---------')] + [(escuela.nombre, escuela.nombre) for escuela in Escuelas.objects.all()]
-    escuela = forms.ChoiceField(choices=escuelas_choices, required=False)
-    
     class Meta:
         model = Estudiante 
         fields = [
@@ -33,3 +30,4 @@ class Estudiante_form(forms.ModelForm):
             self.fields[field_name].initial = 0
         
         self.fields["cedula"].initial = random.randint(1, 1000000000)
+        self.fields["escuela"].initial = "No colocar nada aqui"

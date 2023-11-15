@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-import dj_database_url
 
 # Cargamos las variables
 load_dotenv()
@@ -26,12 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['CORS_ALLOWED_ORIGINS']
+ALLOWED_HOSTS = []
+
 
 # Application definition
 
@@ -42,28 +42,22 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "corsheaders",
-    "home",
-    "login",
     "schools",
-    "insert_students",
+    "login",
     "competence",
+    "insert_students",
     "winners",
+    "home",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-]
-
-CORS_ALLOWED_ORIGINS = [
-    "https://spotec-system.onrender.com",
 ]
 
 ROOT_URLCONF = "spotec.urls"
@@ -90,21 +84,12 @@ WSGI_APPLICATION = "spotec.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# Configurar la base de datos (Tener en cuenta que solo esta para producción)
-if os.getenv("WORKER"):
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
-
-else:
-    DATABASES = {
-        'default': dj_database_url.config(
-            default='postgresql://postgres:postgres@localhost:5432/mysite',
-            conn_max_age=600    
-        )}
+}
 
 
 # Password validation
@@ -137,7 +122,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-CSRF_COOKIE_SECURE = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
